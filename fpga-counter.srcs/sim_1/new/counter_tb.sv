@@ -26,13 +26,15 @@ module counter_tb;
     
     logic clk;
     logic reset;
+    logic enable;
     logic [15:0] count;
     
     // Instanciar el contador
     counter dut (
         .clk(clk),
         .reset(reset),
-        .count(count)
+        .count(count),
+        .enable(enable)
     );
     
     // Generar reloj (10ns periodo)
@@ -42,14 +44,20 @@ module counter_tb;
     // Test
     initial begin
         reset = 1;
+        enable = 0;
         #20;
         reset = 0;
-        #42;
+        enable = 1;
+        #200
+        enable = 0;
+        #20
+        enable = 1;
+        #420;
         $display("Before reset: count=%d", count);
         reset = 1;
-        #20;
+        #200;
         reset = 0;
-        #100;
+        #1000;
         $display("After reset: count=%d", count);
         $display("Simulacion finished OK: count=%d", count);
         $finish;

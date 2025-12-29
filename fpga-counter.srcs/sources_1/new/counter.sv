@@ -25,13 +25,14 @@
 module counter (
     input  logic clk,
     input  logic reset,
+    input  logic enable,
     output logic [15:0] count
 );
     
     always_ff @(posedge clk or posedge reset) begin
         if (reset)
             count <= 16'b0;
-        else
+        else if (enable)
             count <= count + 1;
     end
     
