@@ -44,8 +44,14 @@ module counter_tb;
         reset = 1;
         #20;
         reset = 0;
-        #1000;
-        $display("Simulacion OK: count=%d", count);
+        #42;
+        $display("Before reset: count=%d", count);
+        reset = 1;
+        #20;
+        reset = 0;
+        #100;
+        $display("After reset: count=%d", count);
+        $display("Simulacion finished OK: count=%d", count);
         $finish;
     end
     
