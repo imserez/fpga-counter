@@ -26,7 +26,7 @@ module counter_tb;
     
     logic clk;
     logic reset;
-    logic [7:0] count;
+    logic [15:0] count;
     
     // Instanciar el contador
     counter dut (
@@ -44,7 +44,7 @@ module counter_tb;
         reset = 1;
         #20;
         reset = 0;
-        #100;
+        #1000;
         $display("Simulacion OK: count=%d", count);
         $finish;
     end

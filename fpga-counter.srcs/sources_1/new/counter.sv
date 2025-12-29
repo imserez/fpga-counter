@@ -25,14 +25,14 @@
 module counter (
     input  logic clk,
     input  logic reset,
-    output logic [7:0] count
+    output logic [15:0] count
 );
     
     always_ff @(posedge clk or posedge reset) begin
         if (reset)
-            count <= 8'b0;
+            count <= 16'b0;
         else
-            count <= count + 2;
+            count <= count + 1;
     end
     
 endmodule
