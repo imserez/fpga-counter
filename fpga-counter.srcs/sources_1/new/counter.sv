@@ -32,7 +32,7 @@ module counter (
         if (reset)
             count <= 8'b0;
         else
-            count <= count + 1;
+            count <= count + 2;
     end
     
 endmodule
