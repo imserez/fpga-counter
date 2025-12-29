@@ -1,0 +1,29 @@
+# Vivado temporales y generados
+*.cache/
+*.hw/
+*.ip_user_files/
+*.jou
+*.log
+*.str
+*.zip
+*.tmp
+.Xil/
+
+# Simulación compilada
+*.sim/
+xsim.dir/
+*.wdb
+*.wcfg
+*.pb
+
+# Síntesis e implementación
+*.runs/
+*.gen/
+
+# Bitstreams
+*.bit
+*.bin
+
+# OS
+.DS_Store
+Thumbs.db
