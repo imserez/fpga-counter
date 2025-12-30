@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 30.12.2025 10:52:14
+// Create Date: 30.12.2025 11:11:55
 // Design Name: 
-// Module Name: clock_divider_tb
+// Module Name: seven_seg_decoder_tb
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,29 +19,29 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module clock_divider_tb;
 
-    logic   clk;
-    logic   reset;
-    logic   clk_out;
+module seven_seg_decoder_tb;
+
+    logic   [3:0] bcd;
+    logic   [6:0] segments;
     
-    clock_divider dut (
-        .clk(clk),
-        .reset(reset),
-        .clk_out(clk_out)
+    seven_seg_decoder dut (
+        .bcd(bcd),
+        .segments(segments)
     );
     
-    initial clk = 0;
-    always #5 clk = ~clk;   // 100MHz
     
     initial begin
-        reset = 1;
-        #100;
-        reset = 0;
+        for (int i = 0; i < 10; i++) begin
         
-        #1000000;   // Simulate 1ms
-        $display("Test finished");
+            bcd = i;
+            #10;
+            $display("BCD=%d -> segments=%b", bcd, segments);
+        end
+        
+        $display("All digits tested");
         $finish;
-     end
-     
+    
+    end
+    
 endmodule

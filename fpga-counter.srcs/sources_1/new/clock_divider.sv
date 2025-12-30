@@ -20,8 +20,6 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-`timescale 1ns / 1ps
-
 module clock_divider(
     input   logic clk,    // 100 MHz for Nexys A7
     input   logic reset,
