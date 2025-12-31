@@ -45,7 +45,7 @@ module counter_top(
     );
     
     seven_seg_decoder decoder (
-        .bcd(count[3:0]),
+        .bcde(count[3:0]),
         .segments(seg)
     );
     assign an = 8'b11111110;    // toggle just an0

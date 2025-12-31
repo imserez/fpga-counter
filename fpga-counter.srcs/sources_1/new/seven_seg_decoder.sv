@@ -44,8 +44,8 @@ module seven_seg_decoder(
             4'hB: segments = 7'b0000011; // B
             4'hC: segments = 7'b1000110; // C
             4'hD: segments = 7'b0100001; // D
-            4'hE: segments = 7'b0110000; // E
-            4'hF: segments = 7'b0111000; // F
+            4'hE: segments = 7'b0000110; // E
+            4'hF: segments = 7'b0001110; // F
 
             default: segments = 7'b1111111; // apagado
         endcase
