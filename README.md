@@ -4,9 +4,11 @@
 
 ## Features
 
-- 16-bit counter with enable control
-- Clock divider 100MHz -> 1 Hz
-- 7-segment decoder BCD to segments
+- 32-bit counter with enable control and parameters
+- Clock divider wiht parameters 100MHz -> 1 Hz for visual purposes in FPGA
+- 7-segment decoder BCD to segments. Displays the hex number in the 7-segment
+- 7-segment selector to activate an with active-low. Based on clock at 1Khz chooses which 7-seg activate, only one at a time.
+- Choose the bits of 32-bit counter that are for each 7-segment display. Display 0=[3:0], Display 1=[7:4]
 - Asynchronous reset
 - Hardware verified on Nexys A7
 
@@ -24,6 +26,9 @@
 - Counter maintains value when enable is 0
 - Verified 7-segments display
 - Verified clock divider 100Mhz -> 1Hz
+- Verified segmentor select based on clock, iterating at 1Khz from 0-7.
+- Verified parameters work correctly on modules and they are reusable
+- Verified multiple clk working at diferent speeds
 
 ## What I learned
 
@@ -31,14 +36,12 @@
 - 7-segment display multiplexing basics
 - Constraints file, mapping physical pins to simulation
 - Complete FPGA workflow
+- Reusable modules with parameters
 
 ## Next Steps
 
 - Increment/decrement speed of clock divider with M18 & P18 of Nexys A7
-- Multiplex 4 digits
 - Add button debouncing
-- Show full 16-bit value across displays in hex
-- Use of all 8 seven-segment displays, controlled bi V10, V11, V12... T8.
 - Toggle leds LD15..0 if SW15..0 is on/off
 - Use P17 to count downwards
 - Use M17 to count upwards
