@@ -23,7 +23,8 @@
 module seven_seg_selector(
     input logic clk,
     input logic reset,
-    output logic [2:0] select
+    output logic [2:0] select,
+    output  logic [7:0] an
     );
     
     always_ff @(posedge clk or posedge reset) begin
@@ -32,4 +33,7 @@ module seven_seg_selector(
         else
             select <= select + 1;
     end
+    
+    assign an = ~(1 << select);
+
 endmodule
