@@ -20,21 +20,27 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module clock_divider(
+module clock_divider #(
+
+    parameter LIMIT = 50_000_000,
+    parameter N = 27
+)
+    
+(
     input   logic clk,    // 100 MHz for Nexys A7
     input   logic reset,
     output  logic clk_out    // ~1 Hz (1s)
 );
-    logic   [26:0] counter;
+    logic   [N-1:0] counter;
     
     always_ff @(posedge clk or posedge reset) begin
         if (reset) begin
             counter <= 0;
             clk_out <= 0;
         end
-        else if (counter == 50_000_000) begin // 50 Mhz. Using 5 for visual testing, 50_000_000 for 0,5seg
+        else if (counter == LIMIT) begin // 50 Mhz. Using 5 for visual testing, 50_000_000 for 0,5seg
             counter <= 0;
-            clk_out <= ~clk_out;        // every second
+            clk_out <= ~clk_out;        // every LIMIT
         end
         else begin
             counter <= counter + 1;

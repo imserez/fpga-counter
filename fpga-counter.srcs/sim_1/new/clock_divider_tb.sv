@@ -25,7 +25,7 @@ module clock_divider_tb;
     logic   reset;
     logic   clk_out;
     
-    clock_divider dut (
+    clock_divider #(.N(3), .LIMIT(5)) dut (
         .clk(clk),
         .reset(reset),
         .clk_out(clk_out)
@@ -39,7 +39,7 @@ module clock_divider_tb;
         #100;
         reset = 0;
         
-        #1000000;   // Simulate 1ms
+        #100000000;   // Simulate 
         $display("Test finished");
         $finish;
      end
