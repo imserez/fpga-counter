@@ -49,5 +49,4 @@ module counter_top(
         .segments(seg)
     );
     assign an = 8'b11111110;    // toggle just an0
-    
 endmodule

@@ -20,16 +20,18 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module counter (
+module counter #(
+    parameter N = 16 // count up to 16 by default
+ )(
     input  logic clk,
     input  logic reset,
     input  logic enable,
-    output logic [15:0] count
+    output logic [(N - 1):0] count
 );
     
     always_ff @(posedge clk or posedge reset) begin
         if (reset)
-            count <= 16'b0;
+            count <= '0;
         else if (enable)
             count <= count + 1;
     end

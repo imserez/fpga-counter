@@ -22,13 +22,14 @@
 
 module counter_tb;
     
+    localparam SIZE = 16;
     logic clk;
     logic reset;
     logic enable;
-    logic [15:0] count;
+    logic [SIZE-1:0] count;
     
     // Instanciar el contador
-    counter dut (
+    counter #(.N(SIZE))dut (
         .clk(clk),
         .reset(reset),
         .count(count),
