@@ -29,15 +29,32 @@ module counter_top(
 );
 
     logic   clk_slow;
-    logic   [15:0] count;
+    logic   clk_segment;
+    logic   [31:0] count;
+    logic   [2:0] select;
+    logic   [3:0] bcde_in;
+    logic   [7:0] an_enable;
     
-    clock_divider cd (
+    clock_divider #(.LIMIT(50_000_000), .N(27)) cd (
         .clk(clk),
         .reset(reset),
         .clk_out(clk_slow)
     );
     
-    counter cnt (
+    clock_divider #(.LIMIT(100_000), .N(17)) cd_segment (
+        .clk(clk),
+        .reset(reset),
+        .clk_out(clk_segment)
+    );
+    
+    seven_seg_selector segment_select (
+        .clk(clk_segment),
+        .reset(reset),
+        .select(select),
+        .an(an_enable)
+    );
+    
+    counter #(.N(32)) cnt (
         .clk(clk_slow),
         .reset(reset),
         .enable(enable),
@@ -45,8 +62,37 @@ module counter_top(
     );
     
     seven_seg_decoder decoder (
-        .bcde(count[3:0]),
+        .bcde(bcde_in),
         .segments(seg)
     );
-    assign an = 8'b11111110;    // toggle just an0
+    assign an = an_enable;
+    
+    always_comb begin
+        case(select)
+            3'b000: begin
+                bcde_in = count[3:0];
+            end
+            3'b001: begin
+                bcde_in = count[7:4];
+            end
+            3'b010: begin
+                bcde_in = count[11:8];
+            end
+            3'b011: begin
+                bcde_in = count[15:12];
+            end
+            3'b100: begin
+                bcde_in = count[19:16];
+            end
+            3'b101: begin
+                bcde_in = count[23:20];
+            end
+            3'b110: begin
+                bcde_in = count[27:24];
+            end
+            3'b111: begin
+                bcde_in = count[31:28];
+            end
+        endcase
+    end
 endmodule
