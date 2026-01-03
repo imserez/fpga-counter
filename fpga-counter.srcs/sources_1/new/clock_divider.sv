@@ -39,7 +39,7 @@ module clock_divider #(
             counter <= 0;
             clk_out <= 0;
         end
-        else if (counter == dynamic_limit) begin // 50 Mhz. Using 5 for visual testing, 50_000_000 for 0,5seg
+        else if (counter >= dynamic_limit) begin // 50 Mhz. Using 5 for visual testing, 50_000_000 for 0,5seg
             counter <= 0;
             clk_out <= ~clk_out;        // every LIMIT
         end

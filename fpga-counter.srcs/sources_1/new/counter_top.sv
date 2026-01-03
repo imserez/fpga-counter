@@ -43,7 +43,6 @@ module counter_top(
     logic   [3:0] bcde_in;
     logic   [7:0] an_enable;
     
-    logic   increment_speed = 0;
     logic   [31:0] dynamic_speed = 50_000_000;
     
     
@@ -61,7 +60,7 @@ module counter_top(
         .debounced_signal(db_speed_down)
     );
     
-    clock_divider #(.LIMIT(50_000_000), .N(27)) cd (
+    clock_divider #(.LIMIT(50_000_000), .N(32)) cd (
         .clk(clk),
         .reset(reset),
         .clk_out(clk_slow),
