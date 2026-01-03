@@ -27,8 +27,8 @@ module counter_top(
     input   logic   speed_up,   // speed_up btn
     input   logic   speed_down, // speed_down btn
     output  logic [6:0] seg,    // 7-seg
-    output  logic [7:0] an     // display enable, 8 displays
-  
+    output  logic [7:0] an,     // display enable, 8 displays
+    output   logic   led_15 
 );
 
     logic   db_speed_up;
@@ -93,6 +93,7 @@ module counter_top(
         .segments(seg)
     );
     assign an = an_enable;
+    assign led_15 = enable;
     
     always_comb begin
         case(select)
