@@ -26,7 +26,8 @@ module debouncer #(
     )(
     input   logic clk,
     input   logic signal,
-    output  logic debounced_signal
+    input   logic reset,
+    output  logic debounced_signal = 0
     );
     
     logic   [N-1:0] count;
@@ -41,15 +42,22 @@ module debouncer #(
     );
     
     always_ff @(posedge clk) begin
-        if (signal != debounced_signal) begin
-            enable_counter <= 1;
-            reset_counter <= 0;
-            if (count >= LIMIT)
-                debounced_signal <= signal;;
-        end
-        else begin
+        if (reset) begin
             reset_counter <= 1;
             enable_counter <= 0;
+            debounced_signal <= 0;
+        end
+        else begin
+            if (signal != debounced_signal) begin
+                enable_counter <= 1;
+                reset_counter <= 0;
+                if (count >= LIMIT)
+                    debounced_signal <= signal;
+            end
+            else begin
+                reset_counter <= 1;
+                enable_counter <= 0;
+            end
         end
      end   
 endmodule
