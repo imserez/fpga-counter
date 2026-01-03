@@ -31,8 +31,8 @@ module counter_top(
   
 );
 
-    logic   db_speed_up,
-    logic   db_speed_down
+    logic   db_speed_up;
+    logic   db_speed_down;
     logic   db_up_prev;
     logic   db_down_prev;
 
