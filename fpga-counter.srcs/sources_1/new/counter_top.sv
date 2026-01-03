@@ -44,7 +44,7 @@ module counter_top(
     logic   [7:0] an_enable;
     
     logic   increment_speed = 0;
-    logic   dynamic_speed = 50_000_000;
+    logic   [31:0] dynamic_speed = 50_000_000;
     
     
     debouncer db_up (
