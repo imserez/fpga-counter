@@ -22,6 +22,8 @@
 - BTNC N17 sets reset to 1
 - BTNC: M17 speeds_up the clock and P17 slows down the clock for counting
 - LED_15 is mapped to enable signal of the button J15
+- BTNC: M18 sets the count upwards and P18 sets the count downwards
+- 7-segment displays shows '-' on two's complement negative numbers
 
 ## Simulation results
 
@@ -35,6 +37,8 @@
 - Verified multiple clk working at diferent speeds
 - Verified button debouncing
 - Verified speed_up and down
+- Verified count_up and down
+- Verified 7-seg display for negative numbers
 
 ## What I learned
 
@@ -45,8 +49,7 @@
 - Reusable modules with parameters
 - Button debouncing
 - Dynamic singals for parameters in runtime
+- Working with 2's complements negative numbers
 
 ## Next Steps
 
-- Use P17 to count downwards
-- Use M17 to count upwards
