@@ -26,14 +26,19 @@ module counter #(
     input  logic clk,
     input  logic reset,
     input  logic enable,
-    output logic [(N - 1):0] count
+    output logic signed [(N - 1):0] count,
+    input  logic mode
 );
     
     always_ff @(posedge clk or posedge reset) begin
         if (reset)
             count <= '0;
-        else if (enable)
-            count <= count + 1;
+        else if (enable) begin
+            if (mode)
+                count <= count + 1;
+            else
+                count <= count - 1;
+        end
     end
     
 endmodule
