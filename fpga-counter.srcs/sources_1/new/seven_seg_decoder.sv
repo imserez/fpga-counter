@@ -22,7 +22,8 @@
 
 module seven_seg_decoder(
     input   logic [3:0] bcde,        // 0-15 nums
-    output  logic [6:0] segments   // a:g
+    output  logic [6:0] segments,   // a:g
+    input   logic negative
     );
       
      // segments = {g, f, e, d, c, b, a}
@@ -45,8 +46,12 @@ module seven_seg_decoder(
             4'hC: segments = 7'b1000110; // C
             4'hD: segments = 7'b0100001; // D
             4'hE: segments = 7'b0000110; // E
-            4'hF: segments = 7'b0001110; // F
-
+            4'hF: begin
+                if (negative)
+                    segments = 7'b0111111; // -
+                else
+                    segments = 7'b0001110; // F
+            end
             default: segments = 7'b1111111; // apagado
         endcase
     end
