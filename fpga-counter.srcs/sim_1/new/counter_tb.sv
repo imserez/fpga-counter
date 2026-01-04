@@ -27,28 +27,33 @@ module counter_tb;
     logic reset;
     logic enable;
     logic [SIZE-1:0] count;
+    logic mode;
     
     // Instanciar el contador
     counter #(.N(SIZE))dut (
         .clk(clk),
         .reset(reset),
         .count(count),
-        .enable(enable)
+        .enable(enable),
+        .mode(mode)
     );
     
     // Generar reloj (10ns periodo)
     initial clk = 0;
     always #5 clk = ~clk;
+    initial mode = 1;
     
     // Test
     initial begin
         reset = 1;
         enable = 0;
+        mode = 1;
         #20;
         reset = 0;
         enable = 1;
         #200
         enable = 0;
+        mode = 0;
         #20
         enable = 1;
         #420;
